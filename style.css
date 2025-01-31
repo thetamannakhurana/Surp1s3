@@ -1,201 +1,204 @@
-/* General styling for the body */
+/* 🌸 General Styling */
 body {
-    font-family: 'Dancing Script', cursive;
-    background-color: #ffe4ec; /* Softer pastel pink */
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
     color: #ffffff;
+    font-family: 'Cursive', sans-serif;
     text-align: center;
-    padding: 0;
-    margin: 0;
+    padding: 20px;
+    overflow-x: hidden;
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
+}
+
+/* 💖 Background Gradient Animation */
+@keyframes gradientMove {
+    0% { background-position: 100% 50%; }
+    50% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* 💕 Title Styling */
+h1, h2, h3 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #8b1e3f; /* Dark Pink */
+    text-shadow: 3px 3px 5px #9b1f62; /* Darker Pink */
+    animation: glow 2s infinite alternate, textShake 0.5s infinite;
+}
+
+/* ✨ Romantic Glow Effect */
+@keyframes glow {
+    from { text-shadow: 0 0 10px #ff1493, 0 0 20px #ff69b4; }
+    to { text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff1493; }
+}
+
+/* 💓 Shake Effect for Titles */
+@keyframes textShake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* 🎀 Countdown Timer */
+#countdown {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #8e44ad; /* Purple */
+    background: rgba(255, 20, 147, 0.8);
+    padding: 12px 25px;
+    border-radius: 15px;
+    display: inline-block;
+    margin-top: 25px;
+    animation: heartbeat 1.5s infinite, countdownBlink 2s infinite;
+}
+
+/* 💓 Heartbeat Animation */
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* ✨ Countdown Blink Animation */
+@keyframes countdownBlink {
+    0% { opacity: 1; }
+    50% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+
+/* 🌟 Game Section */
+#game {
+    background: rgba(255, 182, 193, 0.9);
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 25px #ff1493;
+    color: #8b1e3f; /* Dark Pink */
+    font-size: 1.5rem;
+    margin-top: 30px;
+    border: 5px solid #ff4081;
+}
+
+/* 🔥 Game Buttons */
+button {
+    background: linear-gradient(to right, #ff1493, #ff69b4);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 5px 15px rgba(255, 20, 147, 0.5);
+    position: relative;
     overflow: hidden;
 }
 
-/* Style for titles and headings */
-h1, h2, h3 {
-    font-family: 'Pacifico', cursive;
-    color: #ff69b4; /* Bright pink for a cuter effect */
-    text-shadow: 3px 3px 6px rgba(255, 182, 193, 0.8);
-    padding: 10px;
-}
-
-/* Button styling */
-button {
-    background: linear-gradient(135deg, #ff6fcf, #ff99cc);
-    color: white;
-    padding: 14px 28px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: bold;
-    box-shadow: 0px 4px 10px rgba(255, 105, 180, 0.6);
-    transition: 0.3s;
-}
-
 button:hover {
-    background: linear-gradient(135deg, #ff99cc, #ff6fcf);
-    transform: scale(1.15);
+    transform: scale(1.1);
+    background: linear-gradient(to right, #ff69b4, #ff1493);
 }
 
-/* Input field styling */
-input[type="text"] {
-    padding: 12px;
-    border: 2px solid #ff69b4;
-    border-radius: 25px;
-    margin-top: 10px;
-    font-size: 18px;
-    color: #333;
-    background-color: #fff5f8;
-    text-align: center;
+/* 💖 Button Confetti Effect */
+button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 10%, transparent 10%);
+    animation: confetti 0.5s ease-out;
+    transform: translate(-50%, -50%);
+    opacity: 0;
 }
 
-/* Countdown Timer */
-#countdown {
-    font-size: 32px;
-    color: #ff6fcf;
-    margin-top: 20px;
-    font-weight: bold;
-    text-shadow: 3px 3px 6px rgba(255, 182, 193, 0.6);
+@keyframes confetti {
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(0); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
 }
 
-/* Floating Hearts Animation */
-@keyframes floatHearts {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-80px) rotate(360deg);
-        opacity: 0;
-    }
+/* 🎇 Fireworks Effect */
+.fireworks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    overflow: hidden;
 }
 
+.firework {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #ff0 20%, transparent 70%);
+    border-radius: 50%;
+    animation: explode 1s linear forwards;
+    opacity: 0.7;
+}
+
+@keyframes explode {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(5); opacity: 0; }
+}
+
+/* ❤️ Floating Hearts */
 .floating-heart {
     position: absolute;
-    top: 100%;
-    font-size: 3em;
-    color: #ff1493; /* Bright pink */
-    opacity: 0.9;
-    pointer-events: none;
-    animation: floatHearts 4s infinite ease-in-out;
+    font-size: 3rem;
+    color: #9b1f62; /* Darker Pink */
+    animation: floatHearts 8s linear infinite, sparkle 1.5s alternate infinite;
+    opacity: 0.8;
 }
 
-.floating-heart:nth-child(odd) {
-    animation-duration: 5s;
-    animation-delay: 1s;
+@keyframes floatHearts {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
 }
 
-.floating-heart:nth-child(even) {
-    animation-duration: 6s;
-    animation-delay: 2s;
+/* ✨ Heart Sparkle Effect */
+@keyframes sparkle {
+    0% { text-shadow: 0 0 5px #9b1f62, 0 0 10px #ff1493; }
+    50% { text-shadow: 0 0 15px #9b1f62, 0 0 25px #ff69b4; }
+    100% { text-shadow: 0 0 5px #9b1f62, 0 0 10px #ff1493; }
 }
 
-/* Cute Game Styling */
-.game-board {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    margin-top: 20px;
-    text-align: center;
-}
-
-.game-item {
-    background-color: #ff99cc; /* Soft pink */
-    color: white;
-    padding: 24px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: bold;
-    box-shadow: 0px 4px 8px rgba(255, 105, 180, 0.6);
-    transition: background 0.3s ease;
-}
-
-.game-item:hover {
-    background-color: #ff6fcf;
-    transform: scale(1.1);
-}
-
-/* Cute Pop Animation */
-@keyframes popEffect {
-    0% {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-    50% {
-        transform: scale(1.2);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.pop-up {
-    animation: popEffect 0.5s ease-in-out;
-}
-
-/* Extra Floating Hearts */
-.floating-heart-1 {
-    left: 10%;
-    animation-duration: 4.5s;
-    animation-delay: 2s;
-}
-
-.floating-heart-2 {
-    left: 30%;
-    animation-duration: 5.5s;
-    animation-delay: 1.5s;
-}
-
-.floating-heart-3 {
-    left: 50%;
-    animation-duration: 4s;
-    animation-delay: 2.5s;
-}
-
-.floating-heart-4 {
-    left: 70%;
-    animation-duration: 5s;
-    animation-delay: 3s;
-}
-
-.floating-heart-5 {
-    left: 90%;
-    animation-duration: 4.5s;
-    animation-delay: 1s;
-}
-
-/* Special floating effect for buttons */
-button:active {
-    transform: scale(1.3);
-}
-
-/* Win Message Styling */
+/* 🥰 Romantic Message */
 #game-win-message {
-    font-size: 26px;
-    color: #ff6fcf;
-    font-family: 'Pacifico', cursive;
-    margin-top: 20px;
-    text-shadow: 3px 3px 6px rgba(255, 182, 193, 0.6);
+    font-size: 2rem;
+    font-weight: bold;
+    color: #8b1e3f; /* Dark Pink */
+    text-shadow: 2px 2px 10px #9b1f62;
+    margin-top: 15px;
+    animation: blinkText 1s infinite;
 }
 
-/* Floating Heart Emoji */
-.floating-heart-emoji {
-    position: absolute;
-    font-size: 2.5em;
-    color: #ff69b4;
-    opacity: 0.9;
-    pointer-events: none;
-    animation: floatHearts 6s infinite ease-in-out;
+/* 🧡 Text Blink Animation */
+@keyframes blinkText {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
 }
 
-.floating-heart-emoji:nth-child(odd) {
-    animation-duration: 5s;
-    animation-delay: 2s;
+/* 💖 Final Surprise Message */
+#finalMessage {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffe4e1;
+    background: #9b1f62; /* Dark Pink */
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 25px;
+    display: inline-block;
+    animation: bounce 1s infinite;
 }
 
-.floating-heart-emoji:nth-child(even) {
-    animation-duration: 7s;
-    animation-delay: 1s;
+/* 💖 Bounce Effect */
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
 }
