@@ -1,196 +1,188 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* General styling for the body */
 body {
-    font-family: 'Dancing Script', cursive;
-    background-color: #f9e6f2;
-    color: #ff66b2;
-    overflow: hidden;
+    font-family: 'Cursive', sans-serif;
+    background-color: #f9c8d3; /* soft pink background */
+    color: #ffffff; /* white text color for contrast */
+    text-align: center;
     padding: 0;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
+    margin: 0;
+    overflow: hidden;
 }
 
-/* Floating Hearts */
-@keyframes float {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-30px);
-    }
-    100% {
-        transform: translateY(0);
-    }
+/* Style for titles and headings */
+h1, h2, h3 {
+    font-family: 'Dancing Script', cursive;
+    color: #ff6fcf; /* bright pink for titles */
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
 }
 
-.floating-hearts {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-    font-size: 2rem;
-    color: #ff99cc;
-    animation: float 3s ease-in-out infinite;
-    pointer-events: none;
-}
-
-.floating-hearts span {
-    position: absolute;
-    animation: heart-animation 5s ease-in-out infinite;
-}
-
-@keyframes heart-animation {
-    0% {
-        opacity: 0;
-        transform: scale(0.5);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.5);
-    }
-}
-
-/* Cute Container */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to bottom, #ff99cc, #ff66b2);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    animation: pop 0.5s ease-out;
-}
-
-@keyframes pop {
-    0% {
-        transform: scale(0);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* Heading Styles */
-h1 {
-    font-size: 3rem;
-    color: #fff;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Message Text */
-#message {
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-#gameOutcome {
-    font-size: 1.2rem;
-    color: #ff99cc;
-}
-
-/* Button Styles */
+/* Button styling */
 button {
-    background-color: #ff66b2;
+    background-color: #ff6fcf;
     color: white;
+    padding: 12px 24px;
     border: none;
-    padding: 15px 25px;
-    border-radius: 50px;
-    font-size: 1.5rem;
+    border-radius: 30px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
+    font-size: 18px;
+    transition: 0.3s;
 }
 
 button:hover {
-    background-color: #ff3385;
-    transform: translateY(-5px);
+    background-color: #ff47a4; /* slightly darker pink on hover */
+    transform: scale(1.1);
 }
 
-/* Countdown Style */
+/* Styling for input fields */
+input[type="text"] {
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* Countdown Timer */
 #countdown {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #ff99cc;
-    margin-bottom: 30px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    font-size: 24px;
+    color: #ffffff;
+    margin-top: 20px;
 }
 
-/* Floating Clouds Effect */
-@keyframes cloudAnimation {
-    0% { left: -10%; }
-    100% { left: 100%; }
-}
-
-.clouds {
-    position: absolute;
-    top: 10%;
-    z-index: -1;
-    animation: cloudAnimation 30s linear infinite;
-}
-
-.clouds img {
-    width: 100px;
-    opacity: 0.8;
-    margin-right: 50px;
-}
-
-/* Floating Heart Bubbles Animation */
-@keyframes heartBubble {
+/* Floating Hearts Animation */
+@keyframes floatHearts {
     0% {
-        transform: translateY(0);
-        opacity: 1;
+        transform: translateY(0) rotate(0deg);
     }
     100% {
-        transform: translateY(-100px);
-        opacity: 0;
+        transform: translateY(-50px) rotate(360deg);
     }
 }
 
-.bubble-hearts {
-    position: fixed;
-    z-index: -2;
-    bottom: -100px;
-    animation: heartBubble 10s infinite;
+.floating-heart {
+    position: absolute;
+    top: 100%;
+    animation: floatHearts 5s infinite ease-in-out;
+    font-size: 3em;
+    color: #ff6fcf;
+    opacity: 0.8;
     pointer-events: none;
 }
 
-.bubble-hearts span {
-    font-size: 30px;
-    color: #ff66b2;
-    position: absolute;
-    animation: heart-animation 5s ease-in-out infinite;
+.floating-heart:nth-child(odd) {
+    animation-duration: 4s;
+    animation-delay: 2s;
 }
 
-@keyframes heart-bubble {
+.floating-heart:nth-child(even) {
+    animation-duration: 6s;
+    animation-delay: 1s;
+}
+
+/* Cute Game Styling */
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.game-item {
+    background-color: #ff6fcf;
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.game-item:hover {
+    background-color: #ff47a4;
+    transform: scale(1.1);
+}
+
+/* Additional cute animation for the page */
+@keyframes popEffect {
     0% {
+        transform: scale(0.5);
         opacity: 0;
-        transform: translateY(0) scale(0.5);
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
     }
     100% {
+        transform: scale(1);
         opacity: 1;
-        transform: translateY(-200px) scale(1);
     }
+}
+
+.pop-up {
+    animation: popEffect 0.5s ease-in-out;
+}
+
+/* Floating Hearts: Add many heart symbols */
+.floating-heart-1 {
+    left: 10%;
+    animation-duration: 5s;
+    animation-delay: 2s;
+}
+
+.floating-heart-2 {
+    left: 30%;
+    animation-duration: 6s;
+    animation-delay: 1s;
+}
+
+.floating-heart-3 {
+    left: 50%;
+    animation-duration: 4s;
+    animation-delay: 2.5s;
+}
+
+.floating-heart-4 {
+    left: 70%;
+    animation-duration: 6s;
+    animation-delay: 3s;
+}
+
+.floating-heart-5 {
+    left: 90%;
+    animation-duration: 5s;
+    animation-delay: 1.5s;
+}
+
+/* Special floating effect for button */
+button:active {
+    transform: scale(1.2);
+}
+
+/* Styling for game win message */
+#game-win-message {
+    font-size: 24px;
+    color: #ff47a4;
+    font-family: 'Dancing Script', cursive;
+    margin-top: 20px;
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.6);
+}
+
+/* Heart Emoji Floating */
+.floating-heart-emoji {
+    position: absolute;
+    font-size: 2em;
+    animation: floatHearts 6s infinite ease-in-out;
+    color: #ff6fcf;
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+.floating-heart-emoji:nth-child(odd) {
+    animation-duration: 5s;
+    animation-delay: 2s;
+}
+
+.floating-heart-emoji:nth-child(even) {
+    animation-duration: 7s;
+    animation-delay: 1s;
 }
