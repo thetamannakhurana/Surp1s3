@@ -1,6 +1,6 @@
-// Countdown to 10 PM
+// Countdown to 9 PM
 const targetTime = new Date();
-targetTime.setHours(22, 0, 0, 0); // Countdown to 10 PM
+targetTime.setHours(21, 0, 0, 0); // Countdown to 9 PM
 
 function updateCountdown() {
     const now = new Date();
