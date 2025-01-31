@@ -1,6 +1,6 @@
-// Countdown Timer
+// Countdown to 9 PM
 const targetTime = new Date();
-targetTime.setHours(22, 0, 0, 0); // Countdown until 10 PM
+targetTime.setHours(21, 0, 0, 0); // Countdown to 9 PM
 
 function updateCountdown() {
     const now = new Date();
@@ -10,23 +10,26 @@ function updateCountdown() {
         const hours = Math.floor(diff / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-        document.getElementById("countdown").innerText = `Time left for your surprise: ${hours}h ${minutes}m ${seconds}s`;
+        document.getElementById("countdown").innerText = `Time left: ${hours}h ${minutes}m ${seconds}s`;
     } else {
         document.getElementById("countdown").innerText = "It's time! 💖";
+        document.getElementById("finalMessage").innerText = "Call me now for your final surprise! 😘";
     }
 }
 setInterval(updateCountdown, 1000);
 
-// Game based on time of day
+// Game by time of day
 function startGame() {
     const now = new Date();
     const hour = now.getHours();
+
     let gameHtml = '';
     let gameMessage = '';
+    let finalMessage = '';
 
     if (hour >= 8 && hour < 11) {
         gameHtml = generateMemoryMatchGame();
-        gameMessage = "Memory Match: Can you match the pairs? 🤔";
+        gameMessage = "Memory Match: Can you match the pairs? 💕";
     } else if (hour >= 11 && hour < 14) {
         gameHtml = generateWordScrambleGame();
         gameMessage = "Word Scramble: Unscramble the word! 🧩";
@@ -35,7 +38,7 @@ function startGame() {
         gameMessage = "Riddle Challenge: Solve this riddle! 🧐";
     } else if (hour >= 17 && hour < 19.5) {
         gameHtml = generateGuessEmojiGame();
-        gameMessage = "Guess the Emoji: What emoji am I thinking of? 🤔";
+        gameMessage = "Guess the Emoji: What emoji am I thinking of? 🍎";
     } else if (hour >= 19.5 && hour < 21) {
         gameHtml = generateTriviaQuizGame();
         gameMessage = "Trivia Quiz: Answer the questions! 📚";
@@ -45,52 +48,118 @@ function startGame() {
     document.getElementById("gameMessage").innerText = gameMessage;
 }
 
-// Redirect to message page on correct answer
-function goToMessagePage() {
-    window.location.href = "message.html";
-}
+window.onload = startGame;
+
+// --- Games ---
 
 // Memory Match Game
 function generateMemoryMatchGame() {
-    return `<p>Click the matching pairs! 🥰</p>
-            <button onclick="goToMessagePage()">Done! 💕</button>`;
+    const words = ['apple', 'banana', 'cherry', 'date'];
+    const shuffledWords = words.concat(words).sort(() => Math.random() - 0.5);
+
+    let gameHtml = `<p>Match the words:</p><div class="game-board">`;
+    shuffledWords.forEach((word, index) => {
+        gameHtml += `<div class="game-item" id="item${index}" onclick="flipCard(${index})">${word}</div>`;
+    });
+    gameHtml += `</div><button onclick="checkMemoryMatch()">Check</button>`;
+    return gameHtml;
+}
+
+function flipCard(index) {
+    // Flip logic here
+}
+
+function checkMemoryMatch() {
+    // Match checking logic here
 }
 
 // Word Scramble Game
 function generateWordScrambleGame() {
-    return `<p>Unscramble: <strong>surprise</strong> 🧩</p>
-            <input type="text" id="wordInput">
-            <button onclick="checkWordScramble()">Check</button>`;
+    const word = 'surprise';
+    const scrambled = word.split('').sort(() => Math.random() - 0.5).join('');
+    return `<p>Scrambled word: ${scrambled}</p><input type="text" id="wordInput"><button onclick="checkWordScramble('${word}')">Check</button>`;
 }
-function checkWordScramble() {
-    if (document.getElementById('wordInput').value.toLowerCase() === 'surprise') goToMessagePage();
+
+function checkWordScramble(word) {
+    const input = document.getElementById('wordInput').value.toLowerCase();
+    if (input === word) {
+        alert('Correct! 🎉');
+    } else {
+        alert('Try again! 💕');
+    }
 }
 
 // Riddle Game
 function generateRiddleGame() {
-    return `<p>I am tall when young, short when old. What am I? 🧐</p>
+    return `<p>I am tall when I am young, and I am short when I am old. What am I?</p>
             <input type="text" id="riddleInput">
             <button onclick="checkRiddle()">Submit</button>`;
 }
+
 function checkRiddle() {
-    if (document.getElementById('riddleInput').value.toLowerCase() === 'candle') goToMessagePage();
+    const answer = document.getElementById('riddleInput').value.toLowerCase();
+    if (answer === 'candle') {
+        alert('Correct! 🕯️');
+    } else {
+        alert('Try again! 💕');
+    }
 }
 
-// Guess the Emoji Game
+// Guess the Emoji Game (5 PM - 7:30 PM)
 function generateGuessEmojiGame() {
-    return `<p>Guess the fruit emoji 🍎</p>
+    const emojiClue = 'I am a fruit and can make you smile 🍎';
+    return `<p>Guess the emoji: ${emojiClue}</p>
             <input type="text" id="emojiInput">
             <button onclick="checkEmojiGuess()">Submit</button>`;
 }
+
 function checkEmojiGuess() {
-    if (document.getElementById('emojiInput').value.toLowerCase() === 'apple') goToMessagePage();
+    const input = document.getElementById('emojiInput').value.toLowerCase();
+    if (input === 'apple') {
+        alert('Correct! 🍏');
+    } else {
+        alert('Try again! 💕');
+    }
 }
 
-// Trivia Quiz Game
+// Trivia Quiz Game (7:30 PM - 9 PM)
 function generateTriviaQuizGame() {
-    return `<p>What is the capital of France? 🌍</p>
-            <button onclick="goToMessagePage()">Paris</button>`;
+    const questions = [
+        {
+            question: 'What is the capital of France?',
+            options: ['Berlin', 'Madrid', 'Paris', 'Rome'],
+            correctAnswer: 'Paris'
+        },
+        {
+            question: 'Who painted the Mona Lisa?',
+            options: ['Vincent van Gogh', 'Pablo Picasso', 'Leonardo da Vinci', 'Claude Monet'],
+            correctAnswer: 'Leonardo da Vinci'
+        },
+    ];
+
+    let quizHtml = '<p>Trivia Quiz</p>';
+    questions.forEach((q, index) => {
+        quizHtml += `<p>${q.question}</p>`;
+        q.options.forEach((option, i) => {
+            quizHtml += `<input type="radio" name="question${index}" value="${option}"> ${option}<br>`;
+        });
+    });
+    quizHtml += `<button onclick="checkTriviaQuizAnswers()">Submit</button>`;
+    return quizHtml;
 }
 
-// Start the game on load
-window.onload = startGame;
+function checkTriviaQuizAnswers() {
+    const answers = ['Paris', 'Leonardo da Vinci'];
+    let score = 0;
+
+    answers.forEach((answer, index) => {
+        const options = document.getElementsByName(`question${index}`);
+        options.forEach(option => {
+            if (option.checked && option.value === answer) {
+                score++;
+            }
+        });
+    });
+
+    alert(score === answers.length ? 'Correct! 🎉' : 'Try again! 💕');
+}
