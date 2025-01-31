@@ -12,13 +12,14 @@ body {
 /* Style for titles and headings */
 h1, h2, h3 {
     font-family: 'Dancing Script', cursive;
-    color: #ff6fcf; /* bright pink for titles */
+    color: #6a2d92; /* dark purple for titles */
     text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
+    padding: 10px;
 }
 
 /* Button styling */
 button {
-    background-color: #ff6fcf;
+    background-color: #6a2d92; /* dark purple button */
     color: white;
     padding: 12px 24px;
     border: none;
@@ -29,7 +30,7 @@ button {
 }
 
 button:hover {
-    background-color: #ff47a4; /* slightly darker pink on hover */
+    background-color: #5a1d7d; /* slightly darker purple on hover */
     transform: scale(1.1);
 }
 
@@ -40,13 +41,16 @@ input[type="text"] {
     border-radius: 20px;
     margin-top: 10px;
     font-size: 18px;
+    color: #333333; /* dark text color for input fields */
 }
 
 /* Countdown Timer */
 #countdown {
-    font-size: 24px;
-    color: #ffffff;
+    font-size: 30px;
+    color: #4d9c9e; /* light teal for countdown */
     margin-top: 20px;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.6);
 }
 
 /* Floating Hearts Animation */
@@ -64,7 +68,7 @@ input[type="text"] {
     top: 100%;
     animation: floatHearts 5s infinite ease-in-out;
     font-size: 3em;
-    color: #ff6fcf;
+    color: #ff6fcf; /* bright pink for floating hearts */
     opacity: 0.8;
     pointer-events: none;
 }
@@ -89,7 +93,7 @@ input[type="text"] {
 }
 
 .game-item {
-    background-color: #ff6fcf;
+    background-color: #4d9c9e; /* light teal */
     color: white;
     padding: 20px;
     border-radius: 15px;
@@ -98,7 +102,7 @@ input[type="text"] {
 }
 
 .game-item:hover {
-    background-color: #ff47a4;
+    background-color: #368a88; /* darker teal on hover */
     transform: scale(1.1);
 }
 
@@ -161,7 +165,7 @@ button:active {
 /* Styling for game win message */
 #game-win-message {
     font-size: 24px;
-    color: #ff47a4;
+    color: #4d9c9e; /* light teal for win message */
     font-family: 'Dancing Script', cursive;
     margin-top: 20px;
     text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.6);
