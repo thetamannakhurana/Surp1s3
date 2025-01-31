@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're Awesome! 💖</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Yay! 🎉</h1>
+        <p id="message">You did an amazing job! 💕</p>
+        <p id="gameOutcome"></p>
+        <button onclick="goBackToSecretPage()">Go Back</button>
+    </div>
+
+    <script>
+        // Get the URL parameters to display the corresponding message
+        const urlParams = new URLSearchParams(window.location.search);
+        const game = urlParams.get('game');
+        const outcome = urlParams.get('outcome');
+
+        let message = '';
+        if (game && outcome) {
+            if (outcome === 'correct') {
+                message = `You completed the ${game} game correctly! 💖`;
+            } else {
+                message = `Oops! You didn't get it right in the ${game} game. Try again! 💕`;
+            }
+        }
+
+        document.getElementById("message").innerText = message;
+
+        // Navigate back to the secret page
+        function goBackToSecretPage() {
+            window.location.href = "secret.html";
+        }
+    </script>
+</body>
+</html>
