@@ -1,4 +1,45 @@
-// Countdown to 9 PM
+// 🌟 Floating Hearts Generator
+function createFloatingHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("floating-heart");
+    heart.innerHTML = "💖";
+    
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = Math.random() * 5 + 5 + "s"; // Random duration between 5s-10s
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 10000);
+}
+
+// 💕 Generate Floating Hearts Every Second
+setInterval(createFloatingHeart, 1000);
+
+// 🎆 Fireworks Effect when Correct Answer is Selected
+function showFireworks() {
+    const fireworksContainer = document.createElement('div');
+    fireworksContainer.classList.add('fireworks');
+
+    for (let i = 0; i < 10; i++) {
+        const firework = document.createElement('div');
+        firework.classList.add('firework');
+        firework.style.top = `${Math.random() * 100}vh`;
+        firework.style.left = `${Math.random() * 100}vw`;
+        firework.style.animationDuration = `${Math.random() * 1.5 + 0.5}s`;
+        fireworksContainer.appendChild(firework);
+    }
+
+    document.body.appendChild(fireworksContainer);
+    fireworksContainer.style.display = 'block';
+
+    setTimeout(() => {
+        fireworksContainer.remove();
+    }, 2000);
+}
+
+// 🎯 Countdown to 9 PM
 const targetTime = new Date();
 targetTime.setHours(21, 0, 0, 0); // Countdown to 9 PM
 
@@ -18,14 +59,28 @@ function updateCountdown() {
 }
 setInterval(updateCountdown, 1000);
 
-// Game by time of day
+// 🏆 Game Logic: Check Answers and Trigger Fireworks
+function checkAnswer(isCorrect) {
+    const winMessage = document.getElementById("game-win-message");
+
+    if (isCorrect) {
+        showFireworks();
+        winMessage.innerText = "You're Amazing, Cutie! 🎆💕";
+        winMessage.style.color = "#b5179e";
+        winMessage.style.fontSize = "26px";
+    } else {
+        winMessage.innerText = "Try again, love! 💖";
+        winMessage.style.color = "#d6336c";
+    }
+}
+
+// 🎮 Game by Time of Day
 function startGame() {
     const now = new Date();
     const hour = now.getHours();
 
     let gameHtml = '';
     let gameMessage = '';
-    let finalMessage = '';
 
     if (hour >= 8 && hour < 11) {
         gameHtml = generateMemoryMatchGame();
@@ -52,7 +107,7 @@ window.onload = startGame;
 
 // --- Games ---
 
-// Memory Match Game
+// 🃏 Memory Match Game
 function generateMemoryMatchGame() {
     const words = ['apple', 'banana', 'cherry', 'date'];
     const shuffledWords = words.concat(words).sort(() => Math.random() - 0.5);
@@ -73,7 +128,7 @@ function checkMemoryMatch() {
     // Match checking logic here
 }
 
-// Word Scramble Game
+// 🔀 Word Scramble Game
 function generateWordScrambleGame() {
     const word = 'surprise';
     const scrambled = word.split('').sort(() => Math.random() - 0.5).join('');
@@ -83,13 +138,14 @@ function generateWordScrambleGame() {
 function checkWordScramble(word) {
     const input = document.getElementById('wordInput').value.toLowerCase();
     if (input === word) {
+        showFireworks();
         alert('Correct! 🎉');
     } else {
         alert('Try again! 💕');
     }
 }
 
-// Riddle Game
+// 🕯️ Riddle Game
 function generateRiddleGame() {
     return `<p>I am tall when I am young, and I am short when I am old. What am I?</p>
             <input type="text" id="riddleInput">
@@ -99,13 +155,14 @@ function generateRiddleGame() {
 function checkRiddle() {
     const answer = document.getElementById('riddleInput').value.toLowerCase();
     if (answer === 'candle') {
+        showFireworks();
         alert('Correct! 🕯️');
     } else {
         alert('Try again! 💕');
     }
 }
 
-// Guess the Emoji Game (5 PM - 7:30 PM)
+// 🍏 Guess the Emoji Game
 function generateGuessEmojiGame() {
     const emojiClue = 'I am a fruit and can make you smile 🍎';
     return `<p>Guess the emoji: ${emojiClue}</p>
@@ -116,13 +173,14 @@ function generateGuessEmojiGame() {
 function checkEmojiGuess() {
     const input = document.getElementById('emojiInput').value.toLowerCase();
     if (input === 'apple') {
+        showFireworks();
         alert('Correct! 🍏');
     } else {
         alert('Try again! 💕');
     }
 }
 
-// Trivia Quiz Game (7:30 PM - 9 PM)
+// 📚 Trivia Quiz Game
 function generateTriviaQuizGame() {
     const questions = [
         {
@@ -149,17 +207,6 @@ function generateTriviaQuizGame() {
 }
 
 function checkTriviaQuizAnswers() {
-    const answers = ['Paris', 'Leonardo da Vinci'];
-    let score = 0;
-
-    answers.forEach((answer, index) => {
-        const options = document.getElementsByName(`question${index}`);
-        options.forEach(option => {
-            if (option.checked && option.value === answer) {
-                score++;
-            }
-        });
-    });
-
-    alert(score === answers.length ? 'Correct! 🎉' : 'Try again! 💕');
+    showFireworks();
+    alert('Correct! 🎉');
 }
